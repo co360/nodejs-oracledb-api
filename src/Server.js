@@ -1,10 +1,15 @@
+const express = require('express');
 const UsuarioController = require('./UsuarioController.js');
 
-async function run() {
+const app = express();
+
+async function run(req, res) {
     const c = new UsuarioController();
-    const result = c.get();
-    console.log(result);
-   
+    const result = await c.get();
+        
+    res.send(result);   
 }
 
-run();
+app.get('/', run);
+
+app.listen(3001);

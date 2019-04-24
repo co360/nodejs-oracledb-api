@@ -7,7 +7,6 @@ class Database {
         this.password = process.env.NODE_ORACLEDB_PASSWORD,
         this.connectString = process.env.NODE_ORACLEDB_CONNECTIONSTRING
         this.externalAuth = false
-
     }
 
     getConnection() {
@@ -17,17 +16,14 @@ class Database {
                 connectString: this.connectString,
                 externalAuth: this.externalAuth             
         })
-    }    
+    }
 
-    
     async query(sql, params = []) {        
             const conn = await this.getConnection();
             const result = await conn.execute(sql, params);
             return result;       
         
     }
-
-
 }
 
 module.exports = Database;
