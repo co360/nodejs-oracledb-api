@@ -19,11 +19,15 @@ class Database {
         })
     }    
 
-    async query(sql) {
-        const conn = await this.getConnection();
-        const result = await conn.execute(sql);
-        return result;
+    
+    async query(sql, params = []) {        
+            const conn = await this.getConnection();
+            const result = await conn.execute(sql, params);
+            return result;       
+        
     }
+
+
 }
 
 module.exports = Database;
