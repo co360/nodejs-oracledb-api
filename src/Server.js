@@ -1,15 +1,9 @@
 const express = require('express');
-const UsuarioController = require('./controller/UsuarioController.js');
+const routes = require('./Routes.js')
 
 const app = express();
+app.use(express.json());
 
-async function run(req, res) {
-    const c = new UsuarioController();
-    const result = await c.get();
-        
-    res.send(result);   
-}
-
-app.get('/', run);
+app.use('/api', routes);
 
 app.listen(3001);
